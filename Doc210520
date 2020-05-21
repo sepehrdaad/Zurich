@@ -11,10 +11,10 @@ info_summary_190520
 %% clusters
 
 %Enc
-clustering_sEEG_200207
+% clustering_sEEG_200207
 
 %Ret
-clustering_sEEG_200324
+% clustering_sEEG_200324
 
 % cluster : x,y,z,subj,ch
 %% ERP for all channels
@@ -35,15 +35,15 @@ polarity_report_different
 %% statistics
 
 % CLUSTER_stat_encoding200221
-CLUSTER_stat_encoding200411
+CLUSTER_stat_encoding_210520
 
-Hippocampus_stat_encoding260420
+% Hippocampus_stat_encoding260420
 
 
 % CLUSTER_stat_Retrieval200318
-CLUSTER_stat_Retrieval200411
+CLUSTER_stat_Retrieval_210520
 
-Hippocampus_stat_Retreival260420
+% Hippocampus_stat_Retreival260420
 
 %% HitMiss statistics
 
