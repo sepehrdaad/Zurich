@@ -1,8 +1,8 @@
 % info_summary_190520
 
-mainfolder = 'C:\Users\Sep\Desktop\'
+mainfolder = 'C:\Users\Tom\Google Drive\__PC_HSE\code\_GitHub\Sep\'
 % mainfolder = '\\172.16.118.134\TFedele\Sep Rahimian\'
-folder_scritps = [mainfolder 'Kingdom\Scripts']
+folder_scritps = [mainfolder '\']
 cd(folder_scritps)
 
 % subject ID for all the folders and excel sheets
@@ -31,6 +31,9 @@ datafile_sep_Ret = [mainfolder 'Kingdom\Files\exported epochs\Ret\Trials attache
 % folder repository of data with good channels, and coordinates
 folderfiles_Enc_save  = [mainfolder 'Kingdom\Files\exported epochs\Enc\Trials attached together good channels\']
 folderfiles_Ret_save  = [mainfolder 'Kingdom\Files\exported epochs\Ret\Trials attached together good channels\']
+
+folderfiles_Enc_save  = [  'D:\_DATA\Sep\Baseline 0\Enc\Trials attached together good channels\']
+folderfiles_Ret_save  = [  'D:\_DATA\Sep\Baseline 0\Ret\Trials attached together good channels\']
 
 %% filedtrip toolbox
 % 
