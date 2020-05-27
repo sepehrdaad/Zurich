@@ -41,6 +41,9 @@ cl = 1 ;
 % Round 1 
 for elem = 1:round(size(cluster{1,cl},1)/3)
     
+     dib=1;
+    dab=round(size(cluster{1,cl},1)/3);
+    
     id = round(cluster{1,cl}(elem,4)*1000);
     ch = round(cluster{1,cl}(elem,5)*1000);
     
@@ -90,6 +93,9 @@ set(gcf,'units','normalized','outerposition',[0 0 1 1])
 % Round 2
 for elem = round(size(cluster{1,cl},1)/3):2*round(size(cluster{1,cl},1)/3)
     
+    dib=round(size(cluster{1,cl},1)/3);
+    dab=2*round(size(cluster{1,cl},1)/3);
+    
     id = round(cluster{1,cl}(elem,4)*1000);
     ch = round(cluster{1,cl}(elem,5)*1000);
     
@@ -133,11 +139,13 @@ for elem = round(size(cluster{1,cl},1)/3):2*round(size(cluster{1,cl},1)/3)
 %     aspe= 1
 end
 set(gcf,'units','normalized','outerposition',[0 0 1 1])
-% % % Save figure here!!! NAME: session cluster 
-% close all
+
 %%
 % Round 3
 for elem = 2*round(size(cluster{1,cl},1)/3):3*round(size(cluster{1,cl},1)/3)
+    
+     dib=2*round(size(cluster{1,cl},1)/3);
+    dab=3*round(size(cluster{1,cl},1)/3);
     
     id = round(cluster{1,cl}(elem,4)*1000);
     ch = round(cluster{1,cl}(elem,5)*1000);
