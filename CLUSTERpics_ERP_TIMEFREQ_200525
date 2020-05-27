@@ -33,9 +33,10 @@ end
 cfg              = [];
 cfg.baselinetype = 'db';
 cfg.zlim         = [0.5 2]
-N = size(cluster{1,cl},1);
+N = round(dab - dib);
 
 ch  = elem
+% figure % important, because we are iterating in the previos script!
 subplot(4,N, ch+1*N),     ft_singleplotTFR(cfg, TFR1_norm);
 subplot(4,N, ch+2*N),     ft_singleplotTFR(cfg, TFR2_norm);
 subplot(4,N, ch+3*N),     ft_singleplotTFR(cfg, TFR3_norm);
