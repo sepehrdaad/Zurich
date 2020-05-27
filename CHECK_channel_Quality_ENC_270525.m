@@ -35,9 +35,10 @@ for session =1 % should become a FOR
        
 
 close all
-% figure
+figure
+hold on
 cl = 1 ;
-
+%%
 % Round 1 
 for elem = 1:round(size(cluster{1,cl},1)/3)
     
@@ -83,7 +84,7 @@ for elem = 1:round(size(cluster{1,cl},1)/3)
         end
     end
     
-    CLUSTERpics_ERP_TIMEFREQ_200525
+    CLUSTERpics_ERP_TIMEFREQ_270525
 %     aspe= 1
 end
 set(gcf,'units','normalized','outerposition',[0 0 1 1])
@@ -135,7 +136,7 @@ for elem = round(size(cluster{1,cl},1)/3):2*round(size(cluster{1,cl},1)/3)
         end
     end
     
-    CLUSTERpics_ERP_TIMEFREQ_200525
+    CLUSTERpics_ERP_TIMEFREQ_270525
 %     aspe= 1
 end
 set(gcf,'units','normalized','outerposition',[0 0 1 1])
@@ -186,7 +187,7 @@ for elem = 2*round(size(cluster{1,cl},1)/3):3*round(size(cluster{1,cl},1)/3)
         end
     end
     
-    CLUSTERpics_ERP_TIMEFREQ_200525
+    CLUSTERpics_ERP_TIMEFREQ_270525
 %     aspe= 1
 end
 set(gcf,'units','normalized','outerposition',[0 0 1 1])
