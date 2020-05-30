@@ -32,30 +32,35 @@ end
 % TF
 cfg              = [];
 cfg.baselinetype = 'db';
-cfg.zlim         = [0.5 2]
-N = round(dab - dib);
-
+cfg.zlim         = [-1 2]
+N = size(cluster{1,1},1);
 ch  = elem
-% figure % important, because we are iterating in the previos script!
-subplot(4,N, ch+1*N),     ft_singleplotTFR(cfg, TFR1_norm);
-subplot(4,N, ch+2*N),     ft_singleplotTFR(cfg, TFR2_norm);
-subplot(4,N, ch+3*N),     ft_singleplotTFR(cfg, TFR3_norm);
+
+switch sep
+    case  1
+    subplot(6,5, ch),     ft_singleplotTFR(cfg,  TFR1_norm);
+    case 2
+    subplot(6,5, ch),     ft_singleplotTFR(cfg, TFR2_norm);
+    case 3
+    subplot(6,5, ch),     ft_singleplotTFR(cfg, TFR3_norm);
+end
 
 % time traces
-subplot(4,N, ch+0*N),
+
+% subplot(4,N, ch+0*N),
 t = data1.time;
-m = mean(squeeze(data1.trial    ));
-s = std(squeeze(data1.trial    ));
-Ntr = size(squeeze(data1.trial    ),1);
-shadedErrorBar(t, m , s/sqrt(Ntr),'b')
-hold on
-m = mean(squeeze(data2.trial    ));
-s = std(squeeze(data2.trial    ));
-Ntr = size(squeeze(data2.trial    ),1);
-shadedErrorBar(t, m , s/sqrt(Ntr),'g')
-hold on
-m = mean(squeeze(data3.trial    ));
-s = std(squeeze(data3.trial    ));
-Ntr = size(squeeze(data3.trial    ),1);
-shadedErrorBar(t, m , s/sqrt(Ntr),'r')
-axis([-1 2 -2 2])
+% m = mean(squeeze(data1.trial    ));
+% s = std(squeeze(data1.trial    ));
+% Ntr = size(squeeze(data1.trial    ),1);
+% shadedErrorBar(t, m , s/sqrt(Ntr),'b')
+% hold on
+% m = mean(squeeze(data2.trial    ));
+% s = std(squeeze(data2.trial    ));
+% Ntr = size(squeeze(data2.trial    ),1);
+% shadedErrorBar(t, m , s/sqrt(Ntr),'g')
+% hold on
+% m = mean(squeeze(data3.trial    ));
+% s = std(squeeze(data3.trial    ));
+% Ntr = size(squeeze(data3.trial    ),1);
+% shadedErrorBar(t, m , s/sqrt(Ntr),'r')
+% axis([-1 2 -2 2])
