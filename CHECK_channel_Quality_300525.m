@@ -72,7 +72,7 @@ for elem = 1:size(cluster{1,1},1)
     ch = round(cluster{1,1}(elem,5)*1000);
     
     
-    CLUSTERpics_ERP_TIMEFREQ_270525
+    CLUSTERpics_ERP_TIMEFREQ_300525
     
     set(gcf,'units','normalized','outerposition',[0 0 1 1])
 end
@@ -155,7 +155,7 @@ for elem = 1:size(cluster{1,1},1)
     ch = round(cluster{1,1}(elem,5)*1000);
     
     
-    CLUSTERpics_ERP_TIMEFREQ_270525
+    CLUSTERpics_ERP_TIMEFREQ_300525
     
     set(gcf,'units','normalized','outerposition',[0 0 1 1])
 end
