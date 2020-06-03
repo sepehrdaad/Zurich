@@ -98,7 +98,7 @@ cfg.zlim         = [-1 2]
  xlim([-1 2])
  subplot(3,1,2),     ft_singleplotTFR(cfg, TFR2_norm);title ('Hit Incorrect association')
  xlim([-1 2])
- subplot(3,1,3),     ft_singleplotTFR(cfg, TFR2_norm);title ('Miss')
+ subplot(3,1,3),     ft_singleplotTFR(cfg, TFR3_norm);title ('Miss')
 xlim([-1 2])
 
 
@@ -206,5 +206,5 @@ cfg.zlim         = [-1 2]
  xlim([-1 2])
  subplot(3,1,2),     ft_singleplotTFR(cfg, TFR2_norm);title ('Hit Incorrect association')
  xlim([-1 2])
- subplot(3,1,3),     ft_singleplotTFR(cfg, TFR2_norm);title ('Miss')
+ subplot(3,1,3),     ft_singleplotTFR(cfg, TFR3_norm);title ('Miss')
 xlim([-1 2])
