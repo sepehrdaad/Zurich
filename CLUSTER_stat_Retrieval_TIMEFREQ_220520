@@ -1,10 +1,23 @@
    
-info_summary_ZSCORE
-
+% info_summary_ZSCORE
+info_summary_190520
 
 
 % NUMBEROFCLUSTER = 5 % works
  NUMBEROFCLUSTER = 1
+ 
+ 
+ 
+%  mask_ciao = [1 2 3 7 12 13 15 17]
+ mask_sign = ones(1,20);
+
+%  mask_sign([4 6 8 10 11 14 16]) = -1; %if commented flipping is not applied 
+
+ % This similiar to the original version I used which had polarity problem ( and for
+ % predefense)
+ 
+ 
+ 
  
 %  from cluster
 %  mask_ciao = [4 7 12 17]
@@ -20,12 +33,12 @@ info_summary_ZSCORE
  
 
 
-mask_ciao = [4 7 12 17]
-
- mask_sign = ones(1,20);
- 
- mask_sign([ 2 4 7 8 10 14 17]) = -1 % V3
-
+% mask_ciao = [4 7 12 17]
+% 
+%  mask_sign = ones(1,20);
+%  
+%  mask_sign([ 2 4 7 8 10 14 17]) = -1 % V3
+% 
 for session = 2 % should become a FOR
         
         switch session
@@ -45,8 +58,8 @@ for session = 2 % should become a FOR
                 % Retrieval
                 load clusterRet.mat
                 folderfiles_save = folderfiles_Ret_save;
-                cluster{1,1}(mask_ciao,:)=[];
-                 mask_sign(mask_ciao )=[];
+%                 cluster{1,1}(mask_ciao,:)=[];
+%                  mask_sign(mask_ciao )=[];
                  
         end
 
@@ -131,17 +144,40 @@ end
 
 %% TFR
 
+% cfg = [];
+% cfg.output     = 'pow';
+% cfg.method     = 'mtmconvol';
+% cfg.keeptrials = 'yes'
+% cfg.foi        = logspace(log10(1), log10(80),20);
+% cfg.t_ftimwin  = 5./cfg.foi;
+% cfg.tapsmofrq  = 0.6 *cfg.foi;
+% cfg.toi        = -1:0.05:2;
+% TFR1       = ft_freqanalysis(cfg, tl_CorrAss);
+% TFR2       = ft_freqanalysis(cfg, tl_IncorrAss);
+% TFR3       = ft_freqanalysis(cfg, tl_Miss);
+
+
 cfg = [];
 cfg.output     = 'pow';
 cfg.method     = 'mtmconvol';
 cfg.keeptrials = 'yes'
-cfg.foi        = logspace(log10(1), log10(80),20);
+% cfg.foi        = logspace(log10(1), log10(80),20);
+% cfg.t_ftimwin  = 5./cfg.foi;
+% cfg.tapsmofrq  = 0.6 *cfg.foi;
+cfg.foi        = 1:1:80 %logspace(log10(1), log10(80),20);
 cfg.t_ftimwin  = 5./cfg.foi;
-cfg.tapsmofrq  = 0.6 *cfg.foi;
+cfg.tapsmofrq  = 0.4 *cfg.foi;
 cfg.toi        = -1:0.05:2;
+
 TFR1       = ft_freqanalysis(cfg, tl_CorrAss);
 TFR2       = ft_freqanalysis(cfg, tl_IncorrAss);
 TFR3       = ft_freqanalysis(cfg, tl_Miss);
+
+
+
+
+
+
 
 %%            
             cfg = [];
@@ -204,26 +240,41 @@ TFR3       = ft_freqanalysis(cfg, tl_Miss);
   
     %         %%
 %         if 0
-            close all
-            for aa=1:3
-                switch aa
-                    case 1, stat = stat12, name  = 'Corr-Incorr'
-                    case 2, stat = stat13, name  = 'Corr-Miss'
-                    case 3, stat = stat23, name  = 'Incorr-Miss'
-                end
-                
-                figure('Name',name)
-                subplot(3,2,1), imagesc(stat.time, stat.freq,     squeeze(stat.prob),[0 .5]),colorbar, title('p val'),set(gca,'YDir','normal')
-                subplot(3,2,2), imagesc(stat.time, stat.freq,     squeeze(stat.posclusterslabelmat)),colorbar , title('pos cluster'),set(gca,'YDir','normal')
-                subplot(3,2,4), imagesc(stat.time, stat.freq,     squeeze(stat.negclusterslabelmat)),colorbar, title('neg cluster'),set(gca,'YDir','normal')
-                % subplot(3,2,4), imagesc(stat.cirange),colorbar
-                subplot(3,2,3), imagesc(stat.time, stat.freq,     squeeze(stat.mask)),colorbar, title('mask'),set(gca,'YDir','normal')
-                subplot(3,2,5), imagesc(stat.time, stat.freq,     squeeze(stat.stat)),colorbar, title('stat'),set(gca,'YDir','normal')
-            end
-            
-            
-            
-            CLULSTERpics_TIMEFREQ_200228
+%% Plotting
+           close all
+           for aa=1:3
+               switch aa
+                   case 1, stat = stat12, name  = 'Corr-Incorr'
+                   case 2, stat = stat13, name  = 'Corr-Miss'
+                   case 3, stat = stat23, name  = 'Incorr-Miss'
+               end
+               
+               
+               
+               
+               
+               
+               figure('Name',name)
+               subplot(3,2,1), contourf(stat.time, stat.freq,     squeeze(stat.prob),[0 .5]),colorbar, title('p val'),set(gca,'YDir','normal','yscale','log','ytick',logspace(log10(min(stat.freq)),log10(max(stat.freq)),3),'yticklabel',round(logspace(log10(min(stat.freq)),log10(max(stat.freq)),3)/10)*10)
+%                set(gca,'YDir','normal')
+               signif = find (stat.mask(ch,:) >0);
+               if length(signif)
+                   hold on
+                   
+                   subplot(3,2,2), contourf(stat.time, stat.freq,     squeeze(stat.posclusterslabelmat)),colorbar , title('pos cluster'),set(gca,'YDir','normal','yscale','log','ytick',logspace(log10(min(stat.freq)),log10(max(stat.freq)),3),'yticklabel',round(logspace(log10(min(stat.freq)),log10(max(stat.freq)),3)/10)*10)
+%                   set(gca,'YDir','normal')
+                   subplot(3,2,4), contourf(stat.time, stat.freq,     squeeze(stat.negclusterslabelmat)),colorbar, title('neg cluster'),set(gca,'YDir','normal','yscale','log','ytick',logspace(log10(min(stat.freq)),log10(max(stat.freq)),3),'yticklabel',round(logspace(log10(min(stat.freq)),log10(max(stat.freq)),3)/10)*10)
+%                set(gca,'YDir','normal')
+               end
+               subplot(3,2,3), contourf(stat.time, stat.freq,     squeeze(stat.mask)),colorbar, title('mask'),set(gca,'YDir','normal','yscale','log','ytick',logspace(log10(min(stat.freq)),log10(max(stat.freq)),3),'yticklabel',round(logspace(log10(min(stat.freq)),log10(max(stat.freq)),3)/10)*10)
+%                set(gca,'YDir','normal')
+               subplot(3,2,5), contourf(stat.time, stat.freq,     squeeze(stat.stat)),colorbar, title('stat'),set(gca,'YDir','normal','yscale','log','ytick',logspace(log10(min(stat.freq)),log10(max(stat.freq)),3),'yticklabel',round(logspace(log10(min(stat.freq)),log10(max(stat.freq)),3)/10)*10)
+%                set(gca,'YDir','normal')
+               
+               figure, TF_sign(stat)
+               
+           end
+           CLULSTERpics_TIMEFREQ_200228
 
 
 end
