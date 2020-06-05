@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %encoding
+ clear all
+ info_summary_ExtraVirgin
+ 
+ NUMBEROFCLUSTER = 1
+ %                load files
+ folderfiles_save = folderfiles_Enc_save;
+ load clusterEnc.mat
+ %to delete channels
+ %                  cluster{1,1}(mask_ciao,:)=[];
+ 
+ 
+
+figure
+% to calculate the stuff
+for sep = 1:3
+    
+for elem = 1:size(cluster{1,1},1)
+    
+    id = round(cluster{1,1}(elem,4)*1000);
+    ch = round(cluster{1,1}(elem,5)*1000);
+    
+    clear TFR*
+    
+    
+    for cond = 1:3 % Corr, incorr, miss????
+        
+%         WHEREWEARE = [cl elem cond]
+        
+        %%
+        cfg = [];
+        cfg.output     = 'pow';
+        cfg.method     = 'mtmconvol';
+        cfg.keeptrials = 'yes'         
+        cfg.foi        = 2:1:30; %logspace(log10(1), log10(80),20);
+        cfg.t_ftimwin  = 5./cfg.foi;
+        cfg.tapsmofrq  = 0.4 *cfg.foi;
+        cfg.toi        = -2:0.05:3;
+        cfg.channel    = ch;
+        %%
+        
+        switch cond
+            case 1
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')                              
+                TFR1       = ft_freqanalysis(cfg, data);
+%                 data1      = ft_timelockanalysis(cfg, data);
+            case 2
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')               
+                TFR2       = ft_freqanalysis(cfg, data);
+%                 data2      = ft_timelockanalysis(cfg, data);
+            case 3
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')                 
+                TFR3       = ft_freqanalysis(cfg, data);
+%                 data3      = ft_timelockanalysis(cfg, data);
+                
+        end
+    end
+
+   CLUSTERpics_ERP_TIMEFREQ_010620
+   
+end
+
+%
+% plot from the other script
+%  because there are too many channels we plot each condition in one figure
+
+
+
+figure
+
+end
+ close(figure(4))
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Retreival
+clear all
+
+ info_summary_ExtraVirgin
+ 
+ NUMBEROFCLUSTER = 1
+ %                load files
+ folderfiles_save = folderfiles_Ret_save;
+ load ClusterRet.mat
+ %to delete channels
+ %                  cluster{1,1}(mask_ciao,:)=[];
+ 
+ 
+ 
+ 
+% to calculate the stuff
+figure
+for sep = 1:3
+for elem = 1:size(cluster{1,1},1)
+    
+    id = round(cluster{1,1}(elem,4)*1000);
+    ch = round(cluster{1,1}(elem,5)*1000);
+    
+    clear TFR*
+    
+    
+    for cond = 3:5 % Corr, incorr, miss????
+        
+%         WHEREWEARE = [cl elem cond]
+        
+        %%
+        cfg = [];
+        cfg.output     = 'pow';
+        cfg.method     = 'mtmconvol';
+        cfg.keeptrials = 'yes'         
+        cfg.foi        = 2:1:30; %logspace(log10(1), log10(80),20);
+        cfg.t_ftimwin  = 5./cfg.foi;
+        cfg.tapsmofrq  = 0.4 *cfg.foi;
+        cfg.toi        = -1:0.05:2;
+        cfg.channel    = ch;
+        %%
+        
+        switch cond
+            case 3
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')                              
+                TFR1       = ft_freqanalysis(cfg, data);
+%                 data1      = ft_timelockanalysis(cfg, data);
+            case 4
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')               
+                TFR2       = ft_freqanalysis(cfg, data);
+%                 data2      = ft_timelockanalysis(cfg, data);
+            case 5
+                load([folderfiles_save,'\alltrials_' char(subj_ID(id))   '_cond' num2str(cond) '.mat'],'data')                 
+                TFR3       = ft_freqanalysis(cfg, data);
+%                 data3      = ft_timelockanalysis(cfg, data);
+                
+        end
+    end
+
+  CLUSTERpics_ERP_TIMEFREQ_010620
+end
+
+%
+% plot from the other script
+%  because there are too many channels we plot each condition in one figure
+
+figure
+
+end
+
+ close(figure(4))
+ 
