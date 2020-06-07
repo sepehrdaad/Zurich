@@ -1,16 +1,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
  %encoding
+ %%
+ 
  clear all
  info_summary_ExtraVirgin
  
  NUMBEROFCLUSTER = 1
- %                load files
- folderfiles_save = folderfiles_Enc_save;
- load clusterEnc.mat
- %to delete channels
- %                  cluster{1,1}(mask_ciao,:)=[];
- 
- 
+  mask_ciao = [6 7 10 21 22 23 24 27]
+mask_sign = 1 * ones(1,27);
+
+%%
+
+folderfiles_save = folderfiles_Enc_save;
+
+load ClusterEnc.mat
+
+
+cluster{1,1}(mask_ciao,:)=[];
+mask_sign(mask_ciao )=[];
+
+
+
 
 figure
 % to calculate the stuff
@@ -33,7 +44,7 @@ for elem = 1:size(cluster{1,1},1)
         cfg.output     = 'pow';
         cfg.method     = 'mtmconvol';
         cfg.keeptrials = 'yes'         
-        cfg.foi        = 2:1:30; %logspace(log10(1), log10(80),20);
+        cfg.foi        = 1:1:80; %logspace(log10(1), log10(80),20);
         cfg.t_ftimwin  = 5./cfg.foi;
         cfg.tapsmofrq  = 0.4 *cfg.foi;
         cfg.toi        = -2:0.05:3;
@@ -57,7 +68,7 @@ for elem = 1:size(cluster{1,1},1)
         end
     end
 
-   CLUSTERpics_ERP_TIMEFREQ_010620
+   CLUSTERpics_ERP_TIMEFREQ_200607
 end
 
 %
@@ -71,18 +82,28 @@ figure
 end
  close(figure(4))
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Retreival
-clear all
+%%
 
+
+ clear all
  info_summary_ExtraVirgin
  
  NUMBEROFCLUSTER = 1
- %                load files
+mask_ciao = [1 2 3 4 11 14 15 17]
+mask_sign = 1 * ones(1,27);
+
+%%
+
  folderfiles_save = folderfiles_Ret_save;
  load ClusterRet.mat
+
+
+cluster{1,1}(mask_ciao,:)=[];
+mask_sign(mask_ciao )=[];
+
+
  %to delete channels
  %                  cluster{1,1}(mask_ciao,:)=[];
  
@@ -109,10 +130,10 @@ for elem = 1:size(cluster{1,1},1)
         cfg.output     = 'pow';
         cfg.method     = 'mtmconvol';
         cfg.keeptrials = 'yes'         
-        cfg.foi        = 2:1:30; %logspace(log10(1), log10(80),20);
+        cfg.foi        = 1:1:80; %logspace(log10(1), log10(80),20);
         cfg.t_ftimwin  = 5./cfg.foi;
         cfg.tapsmofrq  = 0.4 *cfg.foi;
-        cfg.toi        = -1:0.05:2;
+        cfg.toi        = -2:0.05:3;
         cfg.channel    = ch;
         %%
         
@@ -133,7 +154,7 @@ for elem = 1:size(cluster{1,1},1)
         end
     end
 
-  CLUSTERpics_ERP_TIMEFREQ_010620
+  CLUSTERpics_ERP_TIMEFREQ_200607
 end
 
 %
@@ -144,5 +165,5 @@ figure
 
 end
 
- close(figure(4))
+
  
