@@ -34,15 +34,15 @@ cfg              = [];
 cfg.baselinetype = 'db';
 cfg.zlim         = [-1 2]
 N = size(cluster{1,1},1);
-ch  = elem
+% ch  = elem
 
 switch sep
     case  1
-    subplot(6,5, ch),     ft_singleplotTFR(cfg,  TFR1_norm);
+    subplot(6,5, elem),     ft_singleplotTFR(cfg,  TFR1_norm);
     case 2
-    subplot(6,5, ch),     ft_singleplotTFR(cfg, TFR2_norm);
+    subplot(6,5, elem),     ft_singleplotTFR(cfg, TFR2_norm);
     case 3
-    subplot(6,5, ch),     ft_singleplotTFR(cfg, TFR3_norm);
+    subplot(6,5, elem),     ft_singleplotTFR(cfg, TFR3_norm);
     
 %     case  1
 %     subplot(3,Nch, ch),     ft_singleplotTFR(cfg,  TFR1_norm);
