@@ -3,7 +3,7 @@
 clear all
 
  info_summary_ExtraVirgin
-mask_ciao = [6 7 10 21 22 23 24 27]
+ mask_ciao = [6 7 8 9 10 15 16 17]
 mask_sign = 1 * ones(1,27);
 %  mask_sign([3 8 9 13 15:20 21]) = 1
 
