@@ -1,0 +1,91 @@
+%% trial id for different subclasses of trials
+% congmaker_WC_200618
+
+% load TABLE161215 
+
+ load TABLE180704
+
+
+% 1. VasScore	
+% 2. Encoding_Number of trial	
+% 3. Retrieval_Number of trial		
+% 4. Retrieval_Recognition	
+% 5. Retr_Corr_Assoc	
+% 6. Retr_Inc_Assoc	
+% 7. Retr_Ignored_Old
+
+
+% Build the corr variables
+
+% Encoding trial hit in Retrieval with correct association 
+correct = TABLE180704(find(TABLE180704(:,5) ==1  ),3)';
+ 
+% Encoding trial hit in Retrievalwith correct association 
+incorrect = TABLE180704(find(TABLE180704(:,6) ==1  ),3)';
+
+% Encoding trial  missed in Retrieval
+miss             = TABLE180704(find(TABLE180704(:,7) ==1  ),3)';
+
+% build the congruency variables
+
+congruency  = TABLE180704(1:185,1);
+
+low      = find(congruency<=33);
+middle =  find(congruency>33 & congruency<=66 );
+high     = find(congruency>66);
+%%
+% intersect the variables
+
+% correct association
+correct_low = intersect(correct,low);
+correct_middle=intersect(correct,middle);
+correct_high=intersect(correct,high);
+
+% incorrect association
+incorrect_low = intersect(incorrect,low);
+incorrect_middle=intersect(incorrect,middle);
+incorrect_high=intersect(incorrect,high);
+
+
+% miss
+miss_low = intersect(miss,low);
+miss_middle=intersect(miss,middle);
+miss_high=intersect(miss,high);
+
+%%
+
+% remembr to load the triggers
+
+%% 
+%save the trigger variables 
+mkdir("Triggers For")
+
+Correct_low = triggers(correct_low);
+save Correct_low Correct_low 
+
+Correct_middle = triggers(correct_middle);
+save Correct_middle Correct_middle
+
+Correct_high = triggers(correct_high);
+save Correct_high Correct_high
+
+Incorrect_low = triggers(incorrect_low);
+save Incorrect_low Incorrect_low 
+
+Incorrect_middle = triggers(incorrect_middle);
+save Incorrect_middle Incorrect_middle 
+
+Incorrect_high = triggers(incorrect_high);
+save Incorrect_high Incorrect_high
+
+
+Miss_low = triggers(miss_low);
+save Miss_low Miss_low 
+
+Miss_middle = triggers(miss_middle);
+save Miss_middle Miss_middle 
+
+Miss_high = triggers(miss_high);
+save Miss_high Miss_high
+
+
